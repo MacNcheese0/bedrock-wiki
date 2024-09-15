@@ -23,9 +23,9 @@ These are used as part of a `/give` or `replaceitem` command and can edit specif
 
 ## CanPlaceOn and CanDestroy
 
-Destroy: `/give @p diamond_pickaxe 1 0 {"minecraft:can_destroy":{"blocks":["planks", "skull"]}}`
+Destroy: `/give @p diamond_pickaxe 1 0 {"can_destroy":{"blocks":["planks", "skull"]}}`
 
-Place on: `/give @p stone 1 0 {"minecraft:can_place_on":{"blocks":["stone"]}}`
+Place on: `/give @p stone 1 0 {"can_place_on":{"blocks":["stone"]}}`
 
 You can add more blocks like this: `["stone", "dirt", "bedrock"]`
 
@@ -49,9 +49,9 @@ give @p stone 1 0 {"minecraft:can_place_on": {"blocks": ["acacia_button", "acaci
 
 ## ItemLock
 
-Lock in any applicable slot in inventory: `/give @p iron_axe 1 100 {"minecraft:item_lock":{ "mode": "lock_in_inventory" }}`
+Lock in any applicable slot in inventory: `/give @p iron_axe 1 100 {"item_lock":{ "mode": "lock_in_inventory" }}`
 
-Lock in a specific slot in inventory: `/give @p apple 1 0 {"minecraft:item_lock":{ "mode": "lock_in_slot" }}`
+Lock in a specific slot in inventory: `/give @p apple 1 0 {"item_lock":{ "mode": "lock_in_slot" }}`
 
 These two variations of ItemLock are mutually exclusive. Itemlock works in both adventure and survival.
 
@@ -77,7 +77,7 @@ If you want to hide description and red/yellow triangle, you can simply do:
 
 ## KeepOnDeath
 
-Item will remain in an entity's inventory when it dies: `/replaceitem entity @e[type=zombie] slot.weapon.mainhand -1 cooked_beef 1 0 {"minecraft:keep_on_death":{}}`
+Item will remain in an entity's inventory when it dies: `/replaceitem entity @e[type=zombie] slot.weapon.mainhand -1 cooked_beef 1 0 {"keep_on_death":{}}`
 
 For non-player entities, the item will not be present in their inventory after death as they do not respawn. This can be cleared from the entity's inventory using /clear or replaced with /replaceitem.
 > Gamerule /keepinventory set to true functions as if all items in a player's inventory had `"minecraft:keep_on_death":{}`. However, the NBT component is most helpful in filtering on specific items that one wishes for a player to remain in his or her inventory instead of all items.
@@ -86,21 +86,21 @@ KeepOnDeath functions identically in both adventure and survival mode.
 
 ## Combining NBT components
 
-Give all players a bow that locks in a specific inventory slot and is kept on death: `/give @a bow 1 0 {"minecraft:item_lock":{ "mode": "lock_in_slot" }, "minecraft:keep_on_death":{}}`
+Give all players a bow that locks in a specific inventory slot and is kept on death: `/give @a bow 1 0 {"item_lock":{ "mode": "lock_in_slot" }, "minecraft:keep_on_death":{}}`
 
-Give self a stone shovel that can only dig up gravel and sand, and locks in inventory: `/give @s stone_shovel 1 0 {"minecraft:can_destroy":{"blocks":["dirt", "sand"]},"minecraft:item_lock":{ "mode": "lock_in_inventory" }}`
+Give self a stone shovel that can only dig up gravel and sand, and locks in inventory: `/give @s stone_shovel 1 0 {"minecraft:can_destroy":{"blocks":["dirt", "sand"]},"item_lock":{ "mode": "lock_in_inventory" }}`
 
 ## Additional Notes
 
 Assigning specific blocks and items with specific data values using `"minecraft:can_place_on"` and `"minecraft:can_destroy"` will return an error stating the NBT "could not be updated, which seems to be an unintended bug in this case.
 
-`/give @s cobblestone 64 0 {"minecraft:can_place_on":{"blocks":["stained_glass:2"]}}`
+`/give @s cobblestone 64 0 {"can_place_on":{"blocks":["stained_glass:2"]}}`
 
-`/give @a wooden_axe 16 0 {"minecraft:can_destroy":{"blocks":["wool:5"]}}`
+`/give @a wooden_axe 16 0 {"can_destroy":{"blocks":["wool:5"]}}`
 
 Similarly to the issue above, specifying commands that generally do not make sense will also return a "could not be updated" error. Some examples include:
 
-`/give @a diamond 10 0 {"minecraft:can_place_on":{"blocks":["dirt"]}}`
+`/give @a diamond 10 0 {"can_place_on":{"blocks":["dirt"]}}`
 
 (cannot place items on blocks)
 
